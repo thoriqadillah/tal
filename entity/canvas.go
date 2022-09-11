@@ -5,11 +5,11 @@ import "fmt"
 type Canvas struct {
 	Width  int
 	Height int
-	Cells  [][]string
+	Cells  Cell
 }
 
 func (c *Canvas) DrawCanvas() *Canvas {
-	cells := make([][]string, c.Height)
+	cells := make(Cell, c.Height)
 	for i := range cells {
 		cells[i] = make([]string, c.Width)
 	}
@@ -25,18 +25,18 @@ func (c *Canvas) DrawCanvas() *Canvas {
 }
 
 func (c *Canvas) DrawParticle(total int, char string) *Canvas {
-	particleGroup := make([]Particle, total)
+	particles := make([]Particle, total)
 
 	for i := 0; i < total; i++ {
-		particleGroup[i] = Particle{
+		particles[i] = Particle{
 			Position: randomPosition(c.Width, c.Height),
 			Char:     char,
 		}
 
-		x := particleGroup[i].Position.X
-		y := particleGroup[i].Position.Y
+		x := particles[i].Position.X
+		y := particles[i].Position.Y
 
-		c.Cells[y][x] = particleGroup[i].Char
+		c.Cells[y][x] = particles[i].Char
 	}
 
 	return c
