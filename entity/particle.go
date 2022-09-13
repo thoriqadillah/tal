@@ -2,8 +2,7 @@ package entity
 
 type Particle struct {
 	Position Position
-	Vx       float32
-	Vy       float32
-	Color    string
+	Vx       float64
+	Vy       float64
 	Char     string
 }

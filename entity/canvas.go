@@ -3,28 +3,28 @@ package entity
 import "fmt"
 
 type Canvas struct {
-	Width  int
-	Height int
-	Cells  Cell
+	Width     int
+	Height    int
+	Cells     Cell
+	Particles []Particle
 }
 
 func (c *Canvas) DrawCanvas() *Canvas {
-	cells := make(Cell, c.Height)
-	for i := range cells {
-		cells[i] = make([]string, c.Width)
+	c.Cells = make(Cell, c.Height)
+	for i := range c.Cells {
+		c.Cells[i] = make([]string, c.Width)
 	}
 
 	for i := 0; i < c.Height; i++ {
 		for j := 0; j < c.Width; j++ {
-			cells[i][j] = " "
+			c.Cells[i][j] = " "
 		}
 	}
 
-	c.Cells = cells
 	return c
 }
 
-func (c *Canvas) DrawParticle(total int, char string) *Canvas {
+func (c *Canvas) DrawParticle(total int, char string) []Particle {
 	particles := make([]Particle, total)
 
 	for i := 0; i < total; i++ {
@@ -39,7 +39,9 @@ func (c *Canvas) DrawParticle(total int, char string) *Canvas {
 		c.Cells[y][x] = particles[i].Char
 	}
 
-	return c
+	c.Particles = append(c.Particles, particles...)
+
+	return particles
 }
 
 func (c *Canvas) Render() {
