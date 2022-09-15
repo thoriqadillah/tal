@@ -24,7 +24,7 @@ func main() {
 	}
 
 	for {
-		simulator.Rule(round, round, -1, 1)
+		simulator.Rule(round, round, -1)
 		renderer.Render(&simulator)
 	}
 }
