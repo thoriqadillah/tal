@@ -2,9 +2,13 @@ package main
 
 import (
 	"github.com/thoriqadillah/tal/entity"
+	"github.com/thoriqadillah/tal/renderer"
+	"github.com/thoriqadillah/tal/simulator"
 )
 
 func main() {
+	var color renderer.Color
+
 	c := entity.Canvas{
 		// Width:  150,
 		// Height: 40,
@@ -13,5 +17,14 @@ func main() {
 	}
 
 	canvas := c.DrawCanvas()
-	canvas.DrawParticle(10, ".").DrawParticle(10, "0").Render()
+	round := canvas.DrawParticle(2, color.Green("O"))
+
+	simulator := simulator.Simulator{
+		Canvas: canvas,
+	}
+
+	for {
+		simulator.Rule(round, round, -1, 1)
+		renderer.Render(&simulator)
+	}
 }

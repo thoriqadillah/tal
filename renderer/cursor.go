@@ -4,6 +4,6 @@ import "fmt"
 
 type Cursor struct{}
 
-func (c *Cursor) moveToBeginning() {
+func (c *Cursor) refresh() {
 	fmt.Print("\u001b[H")
 }
