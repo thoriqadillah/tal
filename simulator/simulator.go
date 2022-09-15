@@ -10,7 +10,7 @@ type Simulator struct {
 	Canvas *entity.Canvas
 }
 
-func (s *Simulator) Rule(p1 []entity.Particle, p2 []entity.Particle, gravity float64) {
+func (s *Simulator) Rule(p1 []entity.Particle, p2 []entity.Particle, gravity float64, acceleration float64) {
 	var fx, fy float64
 
 	for i := range p1 {
@@ -26,8 +26,8 @@ func (s *Simulator) Rule(p1 []entity.Particle, p2 []entity.Particle, gravity flo
 				fy += F * float64(dy)
 			}
 		}
-		p1[i].Vx = (p1[i].Vx + fx) * 0.6
-		p1[i].Vy = (p1[i].Vy + fy) * 0.6
+		p1[i].Vx = (p1[i].Vx + fx) * acceleration
+		p1[i].Vy = (p1[i].Vy + fy) * acceleration
 
 		s.Canvas.Cells[p1[i].Position.Y][p1[i].Position.X] = " "
 		x := (p1[i].Position.X + int(math.Round(p1[i].Vx))) % s.Canvas.Width
