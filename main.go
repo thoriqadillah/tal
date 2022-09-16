@@ -10,23 +10,21 @@ func main() {
 	var color renderer.Color
 
 	c := entity.Canvas{
-		// Width:  150,
-		// Height: 40,
 		Width:  270,
 		Height: 70,
 	}
 
 	canvas := c.DrawCanvas()
-	green := canvas.DrawParticle(20, color.Green("o"))
-	red := canvas.DrawParticle(100, color.Red("o"))
-	blue := canvas.DrawParticle(50, color.Blue("o"))
+	green := canvas.DrawParticle(20, color.Green(""))
+	red := canvas.DrawParticle(30, color.Red("O"))
+	blue := canvas.DrawParticle(50, color.Blue("O"))
 
 	simulator := simulator.Simulator{
 		Canvas: canvas,
 	}
 
 	for {
-		// simulator.Rule(red, green, -0.15)
+		simulator.Rule(red, green, -0.15, 0.4)
 		simulator.Rule(red, red, 0.05, 1)
 		simulator.Rule(red, blue, -1, 0.6)
 
