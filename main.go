@@ -15,7 +15,7 @@ func main() {
 	}
 
 	canvas := c.DrawCanvas()
-	green := canvas.DrawParticle(20, color.Green(""))
+	green := canvas.DrawParticle(20, "O")
 	red := canvas.DrawParticle(30, color.Red("O"))
 	blue := canvas.DrawParticle(50, color.Blue("O"))
 
